@@ -44,7 +44,8 @@ export default async function PropertiesPage({
 
       <section className="container-shell grid gap-8 py-10 lg:grid-cols-[280px_1fr]">
         <aside className="h-fit rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="flex items-center gap-2 font-bold text-navy"><SlidersHorizontal size={18} /> Advanced filters</h2>
+          <details className="group" open>
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-2 font-bold text-navy"><span className="flex items-center gap-2"><SlidersHorizontal size={18} /> Advanced filters</span><span className="text-sm text-green-700 group-open:hidden">Show</span><span className="hidden text-sm text-green-700 group-open:block">Hide</span></summary>
           <form className="mt-5 grid gap-4">
             {[
               ["Property type", ["Apartment", "Villa", "Studio", "Penthouse", "Plot"]],
@@ -70,6 +71,7 @@ export default async function PropertiesPage({
             </label>
             <Button type="button">Apply filters</Button>
           </form>
+          </details>
         </aside>
 
         <div>

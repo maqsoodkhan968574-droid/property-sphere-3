@@ -25,25 +25,25 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/88 to-navy/35" />
         </div>
-        <div className="container-shell relative grid min-h-[720px] items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-shell relative grid min-h-[640px] items-center gap-10 py-12 sm:min-h-[720px] sm:py-16 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-green-100">
               <Sparkles size={16} /> Verified homes across India
             </span>
-            <h1 className="mt-6 max-w-3xl text-5xl font-black leading-tight tracking-normal sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-normal sm:text-6xl lg:text-7xl">
               Rivanta Realty
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
               Building Trust, Creating Homes. Buy, rent, or sell premium properties with deep search, trusted agents, and listing intelligence built for confident decisions.
             </p>
-            <div className="mt-8 grid max-w-xl grid-cols-3 gap-3 text-sm">
+            <div className="mt-8 grid max-w-xl grid-cols-3 gap-2 text-xs sm:gap-3 sm:text-sm">
               {[
                 ["18K+", "verified homes"],
                 ["4.8/5", "buyer rating"],
                 ["32", "active cities"]
               ].map(([value, label]) => (
-                <div key={label} className="rounded-lg border border-white/15 bg-white/10 p-4">
-                  <strong className="block text-2xl text-brand">{value}</strong>
+                <div key={label} className="rounded-lg border border-white/15 bg-white/10 p-3 sm:p-4">
+                  <strong className="block text-xl text-brand sm:text-2xl">{value}</strong>
                   <span className="text-slate-300">{label}</span>
                 </div>
               ))}
@@ -98,7 +98,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16">
+      <section className="bg-slate-50 py-12 sm:py-16">
         <div className="container-shell">
           <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -115,7 +115,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="updates" className="container-shell py-16">
+      <section id="updates" className="container-shell py-12 sm:py-16">
         <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-700">News and live updates</p>
@@ -138,7 +138,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="seller-services" className="bg-navy py-16 text-white">
+      <section id="seller-services" className="bg-navy py-12 text-white sm:py-16">
         <div className="container-shell">
           <div className="max-w-2xl">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">Seller services</p>
@@ -165,7 +165,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="services" className="bg-slate-50 py-16">
+      <section id="services" className="bg-slate-50 py-12 sm:py-16">
         <div className="container-shell grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-700">Services and tools</p>

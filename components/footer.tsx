@@ -3,7 +3,7 @@ import { Building2, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-20 bg-navy text-white">
+    <footer className="mt-12 bg-navy text-white sm:mt-20">
       <div className="container-shell grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <div className="mb-4 flex items-center gap-2 text-xl font-bold">

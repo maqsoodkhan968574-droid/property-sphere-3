@@ -19,7 +19,7 @@ export function PropertyCard({ property, view = "grid" }: { property: Property; 
           <span className="rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">{property.status}</span>
         </div>
       </Link>
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <div className="mb-2 flex items-start justify-between gap-3">
           <div>
             <Link href={`/properties/${property.slug}`} className="text-lg font-bold text-navy hover:text-green-700">
@@ -37,7 +37,7 @@ export function PropertyCard({ property, view = "grid" }: { property: Property; 
           {formatCurrency(property.price)}
           {property.status === "Rent" && <span className="text-sm font-semibold text-slate-500">/mo</span>}
         </p>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-slate-600">
+        <div className="mt-4 grid grid-cols-3 gap-1 text-xs text-slate-600 sm:gap-2 sm:text-sm">
           <span className="flex items-center gap-1"><BedDouble size={16} /> {property.bedrooms} Beds</span>
           <span className="flex items-center gap-1"><Bath size={16} /> {property.bathrooms} Baths</span>
           <span className="flex items-center gap-1"><Ruler size={16} /> {property.area} sqft</span>
