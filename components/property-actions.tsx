@@ -1,0 +1,5 @@
+"use client";
+import Link from "next/link";
+import { Download, Heart, PhoneCall } from "lucide-react";
+import { useState } from "react";
+export function PropertyActions({ propertyId }: { propertyId: string }) { const [saved, setSaved] = useState(false); return <div className="grid grid-cols-2 gap-3"><Link href="/#consultation" className="inline-flex min-h-11 items-center justify-center gap-2 border border-slate-200 bg-white px-3 text-sm font-bold text-navy"><PhoneCall size={16} /> Request callback</Link><button type="button" onClick={() => window.print()} className="inline-flex min-h-11 items-center justify-center gap-2 border border-slate-200 bg-white px-3 text-sm font-bold text-navy"><Download size={16} /> Brochure</button><button type="button" onClick={() => { localStorage.setItem(`rivanta-saved-${propertyId}`, "true"); setSaved(true); }} className="col-span-2 inline-flex min-h-11 items-center justify-center gap-2 bg-slate-100 px-3 text-sm font-bold text-navy"><Heart size={16} className={saved ? "fill-green-600 text-green-600" : ""} /> {saved ? "Saved property" : "Save property"}</button></div>; }

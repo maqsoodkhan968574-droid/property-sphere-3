@@ -27,19 +27,19 @@ export default function HomePage() {
         <div className="container-shell relative grid min-h-[640px] items-center gap-10 py-12 sm:min-h-[720px] sm:py-16 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <span className="inline-flex items-center gap-2 border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-green-100">
-              <Sparkles size={16} /> Verified homes across India
+              <Sparkles size={16} /> Bihar&apos;s trusted property marketplace
             </span>
             <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-normal sm:text-6xl lg:text-7xl">
-              Rivanta Realty
+              Find Verified Properties Across Bihar
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-              Building Trust, Creating Homes. Buy, rent, or sell premium properties with deep search, trusted agents, and listing intelligence built for confident decisions.
+              Building Trust, Creating Homes. Discover verified homes, plots, and commercial spaces with trusted local dealers across Bihar.
             </p>
             <div className="mt-8 grid max-w-xl grid-cols-3 gap-2 text-xs sm:gap-3 sm:text-sm">
               {[
-                ["18K+", "verified homes"],
-                ["4.8/5", "buyer rating"],
-                ["32", "active cities"]
+                ["5,000+", "properties"],
+                ["500+", "verified dealers"],
+                ["10,000+", "happy customers"]
               ].map(([value, label]) => (
                 <div key={label} className="rounded-lg border border-white/15 bg-white/10 p-3 sm:p-4">
                   <strong className="block text-xl text-brand sm:text-2xl">{value}</strong>
@@ -49,6 +49,16 @@ export default function HomePage() {
             </div>
           </div>
           <SearchPanel />
+        </div>
+      </section>
+
+      <section className="container-shell py-12 sm:py-16">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div><p className="eyebrow">Popular locations</p><h2 className="mt-2 text-3xl font-black text-navy">Explore Bihar&apos;s growing property markets</h2></div>
+          <Link href="/properties" className="text-sm font-bold text-green-700">Browse every location</Link>
+        </div>
+        <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {["Patna", "Bihta", "Danapur", "Gaya", "Muzaffarpur", "Bhagalpur"].map((location) => <Link key={location} href={`/properties?city=${location}`} className="border border-slate-200 bg-white p-4 text-center font-black text-navy transition hover:border-green-500 hover:text-green-700">{location}</Link>)}
         </div>
       </section>
 
@@ -170,6 +180,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-y border-green-200 bg-green-50 py-12 sm:py-16">
+        <div className="container-shell flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
+          <div><p className="eyebrow">Dealer partnership</p><h2 className="mt-2 text-3xl font-black text-navy">Become a verified Rivanta dealer</h2><p className="mt-3 max-w-2xl leading-7 text-slate-600">Reach serious Bihar buyers, showcase verified inventory, and build your local reputation with a trusted marketplace profile.</p></div>
+          <Link href="/seller-services/brokers" className="inline-flex min-h-12 items-center justify-center bg-navy px-6 text-sm font-bold text-white">Apply as a dealer <ArrowRight className="ml-2" size={17} /></Link>
+        </div>
+      </section>
+
       <section id="services" className="bg-slate-50 py-12 sm:py-16">
         <div className="container-shell grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
@@ -189,6 +206,8 @@ export default function HomePage() {
           <FinanceTools />
         </div>
       </section>
+
+      <section className="container-shell py-12 sm:py-16"><div className="border-l-4 border-green-600 bg-navy p-7 text-white sm:p-9"><p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">AI Property Assistant</p><h2 className="mt-2 text-3xl font-black">Tell us what you need. Get a smarter shortlist.</h2><p className="mt-3 max-w-2xl leading-7 text-slate-300">Our upcoming assistant will help you compare Bihar locations, budgets, property types, and verified dealer options.</p><Link href="/#consultation" className="mt-6 inline-flex bg-brand px-5 py-3 text-sm font-black text-navy">Talk to an expert today <ArrowRight className="ml-2" size={17} /></Link></div></section>
 
       <section className="container-shell grid gap-12 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
@@ -247,6 +266,10 @@ export default function HomePage() {
           <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-black leading-tight sm:text-4xl">Building trust, creating homes, and opening bigger possibilities for every property dream.</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7 text-green-50">Rivanta Realty is proudly developed by a young entrepreneur from Bihar, with a belief that honest guidance can move India forward.</p>
         </div>
+      </section>
+
+      <section className="bg-white py-12">
+        <div className="container-shell"><p className="eyebrow">Buyer resources</p><h2 className="mt-2 text-3xl font-black text-navy">Useful Bihar land and property links</h2><div className="mt-6 grid gap-3 sm:grid-cols-3"><a href="https://biharbhumi.bihar.gov.in/" target="_blank" rel="noreferrer" className="border border-slate-200 p-5 font-black text-navy hover:border-green-500">Bihar Bhumi land records</a><a href="https://biharregd.bihar.gov.in/" target="_blank" rel="noreferrer" className="border border-slate-200 p-5 font-black text-navy hover:border-green-500">Bihar registration portal</a><a href="https://rera.bihar.gov.in/" target="_blank" rel="noreferrer" className="border border-slate-200 p-5 font-black text-navy hover:border-green-500">Bihar RERA information</a></div></div>
       </section>
 
       <Footer />

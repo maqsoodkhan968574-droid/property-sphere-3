@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default async function PropertiesPage({
   searchParams
 }: {
-  searchParams: Promise<{ status?: string; view?: string; city?: string; locality?: string; type?: string; bedrooms?: string; bathrooms?: string; furnished?: string; minArea?: string; maxPrice?: string; sort?: string }>;
+  searchParams: Promise<{ status?: string; view?: string; city?: string; locality?: string; type?: string; bedrooms?: string; bathrooms?: string; furnished?: string; minArea?: string; maxPrice?: string; verified?: string; sort?: string }>;
 }) {
   const params = await searchParams;
   const view = params.view === "list" ? "list" : "grid";
@@ -28,6 +28,7 @@ export default async function PropertiesPage({
     if (params.furnished && property.furnished !== params.furnished) return false;
     if (params.minArea && Number(params.minArea) > property.area) return false;
     if (params.maxPrice && Number(params.maxPrice) < property.price) return false;
+    if (params.verified === "true" && !property.verified) return false;
     return true;
   }).sort((a, b) => params.sort === "price-asc" ? a.price - b.price : params.sort === "price-desc" ? b.price - a.price : 0);
 
@@ -58,7 +59,8 @@ export default async function PropertiesPage({
               ["type", "Property type", ["Apartment", "Villa", "Studio", "Penthouse", "Plot"]],
               ["bedrooms", "Bedrooms", ["1", "2", "3", "4", "5"]],
               ["bathrooms", "Bathrooms", ["1", "2", "3", "4"]],
-              ["furnished", "Furnishing", ["Furnished", "Semi-furnished", "Unfurnished"]]
+              ["furnished", "Furnishing", ["Furnished", "Semi-furnished", "Unfurnished"]],
+              ["construction", "Availability", ["Ready to move", "Under construction"]]
             ].map(([name, label, options]) => (
               <label key={label as string} className="grid gap-2 text-sm font-semibold text-slate-700">
                 {label as string}
@@ -76,6 +78,7 @@ export default async function PropertiesPage({
               Area size
               <input name="minArea" defaultValue={params.minArea} placeholder="Min sqft" className="rounded-lg border border-slate-200 px-3 py-2 font-normal outline-none focus:border-brand" />
             </label>
+            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700"><input name="verified" value="true" type="checkbox" defaultChecked={params.verified === "true"} className="h-4 w-4 accent-green-600" /> Verified properties only</label>
             <Button type="submit">Apply filters</Button>
           </form>
           </details>

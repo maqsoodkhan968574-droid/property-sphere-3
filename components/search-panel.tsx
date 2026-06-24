@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Home, MapPin, Search, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const tabs = ["Buy", "Rent", "Sell"] as const;
+const tabs = ["Buy", "Rent", "Plots", "Commercial"] as const;
 
 export function SearchPanel() {
   const [active, setActive] = useState<(typeof tabs)[number]>("Buy");
@@ -52,7 +52,9 @@ export function SearchPanel() {
             <option>₹3 Cr+</option>
           </select>
         </label>
-        <input type="hidden" name="status" value={active} />
+        <input type="hidden" name="status" value={active === "Rent" ? "Rent" : "Buy"} />
+        {active === "Plots" && <input type="hidden" name="type" value="Plot" />}
+        {active === "Commercial" && <input type="hidden" name="type" value="Commercial" />}
         <Button className="gap-2 shadow-sm" type="submit">
           <Search size={18} /> Search
         </Button>

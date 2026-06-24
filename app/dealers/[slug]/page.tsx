@@ -1,0 +1,10 @@
+import Image from "next/image";
+import Link from "next/link";
+import { BadgeCheck, Building2, MessageCircle, Star } from "lucide-react";
+import { notFound } from "next/navigation";
+import { properties } from "@/lib/property-data";
+
+export default async function DealerPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params; const property = properties.find((item) => item.agent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug); if (!property) notFound(); const agent = property.agent;
+  return <main className="bg-slate-50 py-10"><section className="container-shell"><div className="grid gap-8 bg-white p-6 shadow-sm md:grid-cols-[220px_1fr] md:p-9"><Image src={agent.avatar} alt={agent.name} width={220} height={220} className="aspect-square w-full object-cover" /><div><p className="eyebrow">Dealer profile</p><h1 className="mt-2 text-4xl font-black text-navy">{agent.name}</h1><p className="mt-2 text-slate-600">{agent.role} | 8+ years of local market experience</p><p className="mt-5 inline-flex items-center gap-2 bg-green-50 px-3 py-2 text-sm font-black text-green-700"><BadgeCheck size={18} /> Verified Dealer and KYC checked</p><div className="mt-6 grid grid-cols-3 gap-4"><p><strong className="block text-2xl text-navy">142</strong><span className="text-sm text-slate-500">Listings</span></p><p><strong className="flex items-center gap-1 text-2xl text-navy"><Star size={19} className="text-green-600" />4.8</strong><span className="text-sm text-slate-500">Reviews</span></p><p><strong className="block text-2xl text-navy">98%</strong><span className="text-sm text-slate-500">Response rate</span></p></div><a className="mt-7 inline-flex items-center gap-2 bg-brand px-5 py-3 font-bold text-navy" href={`https://wa.me/${agent.phone}`} target="_blank" rel="noreferrer"><MessageCircle size={18} /> Contact dealer</a></div></div><div className="mt-8 flex items-center justify-between"><h2 className="text-2xl font-black text-navy">Dealer listings</h2><Link href="/properties" className="font-bold text-green-700">View all properties</Link></div></section></main>;
+}

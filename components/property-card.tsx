@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Bath, BedDouble, MapPin, Ruler, ShieldCheck, Star } from "lucide-react";
 import type { Property } from "@/lib/property-data";
 import { cn, formatCurrency } from "@/lib/utils";
+import { CompareButton } from "@/components/compare-button";
 
 export function PropertyCard({ property, view = "grid" }: { property: Property; view?: "grid" | "list" }) {
   const isList = view === "list";
@@ -43,7 +44,7 @@ export function PropertyCard({ property, view = "grid" }: { property: Property; 
           <span className="flex items-center gap-1"><Ruler size={16} /> {property.area} sqft</span>
         </div>
         <p className="mt-4 line-clamp-2 text-sm leading-6 text-slate-600">{property.description}</p>
-        <Link href={`/properties/${property.slug}`} className="mt-5 inline-flex items-center gap-2 text-sm font-black text-green-700">View property <ArrowUpRight size={16} /></Link>
+        <div className="mt-5 flex items-center justify-between"><Link href={`/properties/${property.slug}`} className="inline-flex items-center gap-2 text-sm font-black text-green-700">View property <ArrowUpRight size={16} /></Link><CompareButton propertyId={property.id} /></div>
       </div>
     </article>
   );
