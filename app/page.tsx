@@ -1,272 +1,219 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Building2, CheckCircle2, Clock3, Home, Landmark, Quote, ShieldCheck, Sparkles, TrendingUp, UserRoundCheck } from "lucide-react";
-import { ConsultationForm } from "@/components/consultation/consultation-form";
-import { FinanceTools } from "@/components/finance-tools";
+import { ArrowRight, CheckCircle2, MessageCircle, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { CategoryCard } from "@/components/travel/category-card";
+import { DestinationCard } from "@/components/travel/destination-card";
 import { Footer } from "@/components/footer";
-import { PropertyCard } from "@/components/property-card";
-import { SearchPanel } from "@/components/search-panel";
-import { agents, properties, reviews } from "@/lib/property-data";
+import { FounderVision } from "@/components/travel/founder-vision";
+import { PackageCard } from "@/components/travel/package-card";
+import { SectionHeading } from "@/components/travel/section-heading";
+import { TrustGrid } from "@/components/travel/trust-grid";
+import { destinations, groupPackages, howItWorks, testimonials, travelCategories } from "@/data/travel";
 
 export default function HomePage() {
-  const featured = properties.filter((property) => property.featured);
-
   return (
     <main>
       <section className="relative overflow-hidden bg-navy text-white">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=85"
-            alt="Premium modern home"
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85"
+            alt="Mountain road group travel"
             fill
             priority
-            className="object-cover opacity-35"
+            className="object-cover opacity-45"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/88 to-navy/35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/88 to-green-950/45" />
         </div>
-        <div className="container-shell relative grid min-h-[640px] items-center gap-10 py-12 sm:min-h-[720px] sm:py-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-shell relative grid min-h-[680px] items-center gap-10 py-12 sm:min-h-[760px] lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <span className="inline-flex items-center gap-2 border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-green-100">
-              <Sparkles size={16} /> Verified homes across India
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-green-100">
+              <Sparkles size={16} /> Compatibility-first group travel
             </span>
-            <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-normal sm:text-6xl lg:text-7xl">
-              Rivanta Realty
+            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-tight tracking-normal sm:text-6xl lg:text-7xl">
+              Travel With People Who Match Your Vibe
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-              Building Trust, Creating Homes. Buy, rent, or sell premium properties with deep search, trusted agents, and listing intelligence built for confident decisions.
+              A smart group travel platform that matches you with like-minded travelers for Sikkim, Darjeeling, and beyond.
             </p>
-            <div className="mt-8 grid max-w-xl grid-cols-3 gap-2 text-xs sm:gap-3 sm:text-sm">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/compatibility-quiz" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-amber-400 px-6 py-3 text-sm font-black text-navy transition hover:bg-amber-300">
+                Take Compatibility Quiz <ArrowRight size={18} />
+              </Link>
+              <Link href="/group-packages" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/25 bg-white/10 px-6 py-3 text-sm font-black text-white transition hover:bg-white hover:text-navy">
+                Explore Trips
+              </Link>
+            </div>
+            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-2 text-xs sm:gap-3 sm:text-sm">
               {[
-                ["5,000+", "properties"],
-                ["500+", "verified dealers"],
-                ["10,000+", "happy customers"]
+                ["92%", "sample match score"],
+                ["10", "phase 1 destinations"],
+                ["8", "traveler categories"]
               ].map(([value, label]) => (
                 <div key={label} className="rounded-lg border border-white/15 bg-white/10 p-3 sm:p-4">
-                  <strong className="block text-xl text-brand sm:text-2xl">{value}</strong>
+                  <strong className="block text-xl text-amber-300 sm:text-2xl">{value}</strong>
                   <span className="text-slate-300">{label}</span>
                 </div>
               ))}
             </div>
           </div>
-          <SearchPanel />
-        </div>
-      </section>
-
-      <section className="container-shell py-12 sm:py-16">
-        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div><p className="eyebrow">Popular locations</p><h2 className="mt-2 text-3xl font-black text-navy">Explore Bihar&apos;s growing property markets</h2></div>
-          <Link href="/properties" className="text-sm font-bold text-green-700">Browse every location</Link>
-        </div>
-        <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {["Patna", "Bihta", "Danapur", "Gaya", "Muzaffarpur", "Bhagalpur"].map((location) => <Link key={location} href={`/properties?city=${location}`} className="border border-slate-200 bg-white p-4 text-center font-black text-navy transition hover:border-green-500 hover:text-green-700">{location}</Link>)}
-        </div>
-      </section>
-
-      <section className="border-y border-slate-200 bg-white py-5">
-        <div className="container-shell grid gap-4 text-sm sm:grid-cols-3">
-          {["Verified listings and real local experts", "Dedicated support from search to paperwork", "A clear, refundable consultation promise"].map((item) => <p key={item} className="flex items-center gap-2 font-bold text-slate-700"><CheckCircle2 size={18} className="shrink-0 text-green-600" /> {item}</p>)}
-        </div>
-      </section>
-
-      <section id="consultation" className="bg-slate-50 py-16">
-        <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <p className="eyebrow">Executive desk</p>
-            <h2 className="mt-2 max-w-xl text-4xl font-black leading-tight text-navy">A one-to-one meeting for decisions that need to move quickly.</h2>
-            <p className="mt-5 max-w-xl leading-7 text-slate-600">
-              Whether you are buying your next home or selling a property, our senior executive gives you dedicated guidance, a clear action plan, and a faster route forward.
-            </p>
-            <div className="mt-7 grid gap-4">
+          <div className="rounded-lg border border-white/15 bg-white/95 p-5 text-navy shadow-soft">
+            <p className="eyebrow">Live matching preview</p>
+            <h2 className="mt-2 text-2xl font-black">From random group to right group</h2>
+            <div className="mt-5 grid gap-3">
               {[
-                ["Personal strategy", "Discuss your budget, location, timeline, and property requirements privately."],
-                ["Fast-track action", "Get the right next steps for a purchase, sale, shortlist, valuation, or listing."],
-                ["Refund assurance", "The ₹1,100 consultation token is fully refundable if you are not satisfied with the meeting."]
-              ].map(([title, copy]) => (
-                <div key={title} className="flex gap-3">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy text-brand"><Clock3 size={19} /></span>
-                  <div>
-                    <h3 className="font-black text-navy">{title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-slate-600">{copy}</p>
-                  </div>
+                ["Age and trip type", "18-24, friends, high energy"],
+                ["Travel style", "Adventure, reels, local cafes"],
+                ["Budget and comfort", "Standard stays, shared verified taxi"],
+                ["Result", "Gen Z Adventure Explorer, 92% match"]
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-green-700">{label}</p>
+                  <p className="mt-1 font-bold text-slate-800">{value}</p>
                 </div>
               ))}
             </div>
           </div>
-          <ConsultationForm />
+        </div>
+      </section>
+
+      <section className="bg-white py-14">
+        <div className="container-shell grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div className="rounded-lg bg-red-50 p-6">
+            <p className="eyebrow text-red-700">The problem</p>
+            <h2 className="mt-2 text-3xl font-black text-navy">Random shared taxis quietly ruin good trips.</h2>
+            <p className="mt-4 leading-7 text-slate-700">
+              One group wants loud music and snow points, another wants a quiet ride and slow breakfast. Families, couples, solo travelers, seniors, and adventure travelers often get mixed without matching energy, privacy needs, food choices, and pace.
+            </p>
+          </div>
+          <div className="rounded-lg bg-green-50 p-6">
+            <p className="eyebrow">The solution</p>
+            <h2 className="mt-2 text-3xl font-black text-navy">Vibe-based traveler matching before booking.</h2>
+            <p className="mt-4 leading-7 text-slate-700">
+              We group travelers by age group, travel style, budget, interests, wake-up preference, adventure level, language, and safety preferences, then connect them to verified local travel partners.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-shell py-16">
+        <SectionHeading eyebrow="Travel categories" title="Choose a group that feels like your people." copy="Each category is designed around how travelers actually behave on a trip, not only where they want to go." />
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {travelCategories.map((category) => (
+            <CategoryCard key={category.slug} category={category} />
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16">
+        <div className="container-shell">
+          <SectionHeading eyebrow="How it works" title="A smarter path from profile to perfect group." align="center" />
+          <div className="mt-8 grid gap-4 md:grid-cols-5">
+            {howItWorks.map((step, index) => (
+              <div key={step} className="rounded-lg border border-slate-200 bg-white p-5 text-center shadow-sm">
+                <span className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-navy text-sm font-black text-amber-300">{index + 1}</span>
+                <p className="mt-4 text-sm font-black leading-6 text-navy">{step}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="container-shell py-16">
         <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div>
-            <p className="eyebrow">Featured</p>
-            <h2 className="mt-2 text-3xl font-black text-navy">Handpicked premium homes</h2>
-          </div>
-          <Link href="/properties" className="inline-flex items-center gap-2 text-sm font-bold text-green-700">
-            Browse all listings <ArrowRight size={16} />
+          <SectionHeading eyebrow="Phase 1 destinations" title="Sikkim and Darjeeling, built for matched group travel." />
+          <Link href="/destinations" className="inline-flex items-center gap-2 text-sm font-black text-green-700">
+            View all destinations <ArrowRight size={16} />
           </Link>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+          {destinations.slice(0, 6).map((destination) => (
+            <DestinationCard key={destination.name} destination={destination} />
           ))}
         </div>
       </section>
 
-      <section className="bg-slate-50 py-12 sm:py-16">
+      <section className="bg-white py-16">
         <div className="container-shell">
-          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <p className="eyebrow">Latest</p>
-              <h2 className="mt-2 text-3xl font-black text-navy">Fresh listings this week</h2>
-            </div>
-            <Link href="/login" className="inline-flex min-h-11 items-center justify-center border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy hover:border-green-500 hover:text-green-700">Set listing alerts</Link>
+          <SectionHeading eyebrow="Why choose us" title="Trust and compatibility are the product." copy="The platform is designed for better group chemistry, safer decisions, and stronger local execution." />
+          <div className="mt-8">
+            <TrustGrid />
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {properties.slice(0, 2).map((property) => (
-              <PropertyCard key={property.id} property={property} view="list" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="updates" className="container-shell py-12 sm:py-16">
-        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-700">News and live updates</p>
-            <h2 className="mt-2 text-3xl font-black text-navy">Stay close to the market</h2>
-          </div>
-          <Link href="/properties" className="inline-flex items-center gap-2 text-sm font-bold text-green-700">Explore live listings <ArrowRight size={16} /></Link>
-        </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            ["Market watch", "Buyer demand is rising for ready-to-move premium homes in well-connected neighbourhoods.", "Updated today"],
-            ["Seller insight", "A verified listing with professional photos and a clear price attracts more serious enquiries.", "Seller guide"],
-            ["Local pulse", "Track new listings, price movement, and high-interest localities before your next property decision.", "Live intelligence"]
-          ].map(([label, copy, meta]) => (
-            <article key={label} className="border-l-4 border-green-500 bg-slate-50 p-6">
-              <p className="text-sm font-bold text-green-700">{meta}</p>
-              <h3 className="mt-3 text-xl font-black text-navy">{label}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="seller-services" className="bg-navy py-12 text-white sm:py-16">
-        <div className="container-shell">
-          <div className="max-w-2xl">
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">Seller services</p>
-            <h2 className="mt-2 text-3xl font-black">A stronger route to the right buyer</h2>
-            <p className="mt-4 leading-7 text-slate-300">Choose the service that matches how you sell. Every route is supported by verified enquiries and local market guidance.</p>
-          </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {[
-              [Building2, "For developers", "Launch projects with qualified leads, inventory visibility, and market-ready campaigns.", "/seller-services/developers"],
-              [UserRoundCheck, "For brokers", "Manage listings, strengthen your local reach, and respond to serious prospects faster.", "/seller-services/brokers"],
-              [Home, "For owners", "List your home with expert support, pricing guidance, and a clear verification journey.", "/seller-services/owners"]
-            ].map(([Icon, title, copy, href]) => {
-              const ServiceIcon = Icon as typeof Building2;
-              return (
-                <article key={title as string} className="border border-white/15 bg-white/5 p-6">
-                  <ServiceIcon className="text-brand" size={28} />
-                  <h3 className="mt-5 text-xl font-black">{title as string}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{copy as string}</p>
-                  <Link href={href as string} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand">Add your details <ArrowRight size={16} /></Link>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-green-200 bg-green-50 py-12 sm:py-16">
-        <div className="container-shell flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
-          <div><p className="eyebrow">Dealer partnership</p><h2 className="mt-2 text-3xl font-black text-navy">Become a verified Rivanta dealer</h2><p className="mt-3 max-w-2xl leading-7 text-slate-600">Reach serious Bihar buyers, showcase verified inventory, and build your local reputation with a trusted marketplace profile.</p></div>
-          <Link href="/seller-services/brokers" className="inline-flex min-h-12 items-center justify-center bg-navy px-6 text-sm font-bold text-white">Apply as a dealer <ArrowRight className="ml-2" size={17} /></Link>
-        </div>
-      </section>
-
-      <section id="services" className="bg-slate-50 py-12 sm:py-16">
-        <div className="container-shell grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-700">Services and tools</p>
-            <h2 className="mt-2 text-3xl font-black text-navy">Plan your property move with clarity</h2>
-            <div className="mt-7 grid gap-4">
-              <article className="flex gap-4 border-b border-slate-200 pb-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center bg-green-100 text-green-700"><Landmark size={21} /></span>
-                <div><h3 className="font-black text-navy">Home loan support</h3><p className="mt-1 text-sm leading-6 text-slate-600">Understand your affordability and begin your financing journey with confidence.</p></div>
-              </article>
-              <article className="flex gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center bg-navy text-brand"><Building2 size={21} /></span>
-                <div><h3 className="font-black text-navy">Rivanta Realty assistance</h3><p className="mt-1 text-sm leading-6 text-slate-600">One team for property search, seller strategy, verified visits, and negotiations.</p></div>
-              </article>
-            </div>
-          </div>
-          <FinanceTools />
-        </div>
-      </section>
-
-      <section className="container-shell py-12 sm:py-16"><div className="border-l-4 border-green-600 bg-navy p-7 text-white sm:p-9"><p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">AI Property Assistant</p><h2 className="mt-2 text-3xl font-black">Tell us what you need. Get a smarter shortlist.</h2><p className="mt-3 max-w-2xl leading-7 text-slate-300">Our upcoming assistant will help you compare Bihar locations, budgets, property types, and verified dealer options.</p><Link href="/#consultation" className="mt-6 inline-flex bg-brand px-5 py-3 text-sm font-black text-navy">Talk to an expert today <ArrowRight className="ml-2" size={17} /></Link></div></section>
-
-      <section className="container-shell grid gap-12 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-        <div>
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-700">Agents</p>
-          <h2 className="mt-2 text-3xl font-black text-navy">Trusted local experts</h2>
-          <p className="mt-4 text-slate-600">
-            Every featured agent is reviewed for market knowledge, response quality, and listing accuracy.
-          </p>
-          <div className="mt-6 grid gap-3">
-            {["Verified inventory", "Visit scheduling", "Deal-stage lead tracking"].map((item) => (
-              <span key={item} className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                <CheckCircle2 size={18} className="text-green-600" /> {item}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-3">
-          {agents.map((agent) => (
-            <article key={agent.name} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <Image src={agent.image} alt={agent.name} width={96} height={96} className="h-20 w-20 rounded-lg object-cover" />
-              <h3 className="mt-4 font-bold text-navy">{agent.name}</h3>
-              <p className="text-sm text-slate-500">{agent.market}</p>
-              <p className="mt-3 flex items-center gap-2 text-sm font-bold text-green-700">
-                <TrendingUp size={16} /> {agent.deals} closed deals
-              </p>
-            </article>
-          ))}
         </div>
       </section>
 
       <section className="bg-navy py-16 text-white">
-        <div className="container-shell">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">Reviews</p>
-              <h2 className="mt-2 text-3xl font-black">Customers who moved smarter</h2>
-            </div>
-            <ShieldCheck className="hidden text-brand sm:block" size={38} />
+        <div className="container-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div>
+            <p className="eyebrow text-amber-300">For partners</p>
+            <h2 className="mt-2 text-3xl font-black leading-tight sm:text-4xl">More verified customers for local travel businesses.</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              We work with travel agencies, taxi owners, hotels, guides, and adventure operators. You handle the ground experience; we bring better-matched groups, digital reach, and clearer expectations before the trip begins.
+            </p>
+            <Link href="/partner-with-us" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-amber-400 px-6 py-3 text-sm font-black text-navy hover:bg-amber-300">
+              Partner With Us
+            </Link>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {reviews.map((review) => (
-              <article key={review.name} className="rounded-lg border border-white/10 bg-white/10 p-6">
-                <Quote className="text-brand" />
-                <p className="mt-4 leading-7 text-slate-200">{review.quote}</p>
-                <p className="mt-5 font-bold">{review.name}</p>
-                <p className="text-sm text-slate-400">{review.city}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {["Verified customers", "Better group matching", "More bookings", "Digital reach"].map((item) => (
+              <div key={item} className="rounded-lg border border-white/10 bg-white/10 p-5">
+                <CheckCircle2 className="text-green-300" size={24} />
+                <h3 className="mt-3 font-black">{item}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container-shell py-16">
+        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <SectionHeading eyebrow="Group packages" title="Sample trips designed around traveler compatibility." />
+          <Link href="/group-packages" className="inline-flex items-center gap-2 text-sm font-black text-green-700">
+            Browse packages <ArrowRight size={16} />
+          </Link>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {groupPackages.slice(0, 3).map((trip) => (
+            <PackageCard key={trip.title} trip={trip} />
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16">
+        <div className="container-shell">
+          <SectionHeading eyebrow="Traveler reviews" title="Sample feedback from matched group experiences." align="center" />
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {testimonials.map((review) => (
+              <article key={review.name} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                <MessageCircle className="text-green-700" size={26} />
+                <p className="mt-4 text-sm leading-6 text-slate-700">"{review.quote}"</p>
+                <div className="mt-5 border-t border-slate-100 pt-4">
+                  <h3 className="font-black text-navy">{review.name}</h3>
+                  <p className="text-sm text-slate-500">{review.role}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-green-600 py-14 text-white">
-        <div className="container-shell text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-100">Built in Bihar, for India</p>
-          <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-black leading-tight sm:text-4xl">Building trust, creating homes, and opening bigger possibilities for every property dream.</h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-7 text-green-50">Rivanta Realty is proudly developed by a young entrepreneur from Bihar, with a belief that honest guidance can move India forward.</p>
+      <section className="container-shell py-16">
+        <div className="rounded-lg bg-gradient-to-r from-green-700 to-navy p-6 text-white shadow-soft sm:p-10">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <ShieldCheck size={30} className="text-amber-300" />
+              <h2 className="mt-4 text-3xl font-black">Find your tribe before the trip starts.</h2>
+              <p className="mt-3 max-w-2xl leading-7 text-slate-200">
+                Start with the compatibility quiz and see what kind of traveler group fits your energy, comfort, and travel goals.
+              </p>
+            </div>
+            <Link href="/compatibility-quiz" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-amber-400 px-6 py-3 text-sm font-black text-navy hover:bg-amber-300">
+              Take Compatibility Quiz
+            </Link>
+          </div>
         </div>
       </section>
+
+      <FounderVision />
 
       <Footer />
     </main>

@@ -21,7 +21,7 @@ html {
 }
 
 ::selection {
-  background: #22c55e;
+  background: #f59e0b;
   color: #0f172a;
 }
 
@@ -43,7 +43,95 @@ html {
 
 @layer utilities {
   .eyebrow {
-    @apply text-xs font-bold uppercase tracking-[0.2em] text-green-700;
+    @apply text-xs font-black uppercase tracking-[0.2em] text-green-700;
+  }
+
+  .premium-panel {
+    @apply rounded-lg border border-slate-200 bg-white shadow-sm;
+  }
+}
+
+@keyframes founder-plane-path {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-18deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-360px, 150px, 0) rotate(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes founder-star-drift {
+  from {
+    background-position: 0 0, 40px 80px, 120px 30px;
+  }
+  to {
+    background-position: 180px 120px, 220px 200px, 300px 150px;
+  }
+}
+
+@keyframes founder-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.founder-map-texture {
+  background:
+    radial-gradient(circle at 24% 30%, rgba(45, 212, 191, 0.16), transparent 24%),
+    radial-gradient(circle at 72% 22%, rgba(251, 191, 36, 0.12), transparent 20%),
+    linear-gradient(115deg, transparent 0 20%, rgba(255, 255, 255, 0.05) 20.2% 20.6%, transparent 20.8% 45%, rgba(255, 255, 255, 0.04) 45.2% 45.6%, transparent 45.8%),
+    linear-gradient(35deg, transparent 0 35%, rgba(255, 255, 255, 0.04) 35.2% 35.6%, transparent 35.8% 70%, rgba(255, 255, 255, 0.035) 70.2% 70.6%, transparent 70.8%);
+}
+
+.founder-stars {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.56) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(125, 211, 252, 0.42) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(251, 191, 36, 0.34) 1px, transparent 1.5px);
+  background-size: 160px 160px, 220px 220px, 260px 260px;
+  animation: founder-star-drift 18s linear infinite;
+}
+
+.founder-plane {
+  animation: founder-plane-path 9s ease-in-out infinite;
+}
+
+.founder-mountain {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 100%;
+  clip-path: polygon(0 100%, 8% 68%, 15% 82%, 24% 42%, 34% 76%, 43% 52%, 52% 80%, 64% 36%, 74% 75%, 84% 48%, 100% 86%, 100% 100%);
+}
+
+.founder-mountain-back {
+  background: linear-gradient(180deg, rgba(20, 184, 166, 0.22), rgba(15, 23, 42, 0.2));
+}
+
+.founder-mountain-front {
+  height: 72%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+  transform: translateY(18px);
+}
+
+.founder-vision-reveal {
+  animation: founder-fade-up 0.9s ease-out both;
+}
+
+@supports (animation-timeline: view()) {
+  .founder-vision-reveal {
+    animation-timeline: view();
+    animation-range: entry 12% cover 32%;
   }
 }
 

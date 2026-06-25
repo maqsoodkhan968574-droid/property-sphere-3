@@ -1,31 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 import { Header } from "@/components/header";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL ?? "http://localhost:3000"),
   title: {
-    default: "Rivanta Realty | Building Trust, Creating Homes",
-    template: "%s | Rivanta Realty"
+    default: "MyVibeMyTrip.com | Compatibility-Based Group Travel",
+    template: "%s | MyVibeMyTrip.com"
   },
   description:
-    "Rivanta Realty helps you buy, rent, and sell verified premium homes with trusted agents and personal executive guidance.",
+    "A smart group travel platform that matches travelers by vibe, personality, budget, and travel style for Sikkim, Darjeeling, and beyond.",
   openGraph: {
-    title: "Rivanta Realty",
-    description: "Building Trust, Creating Homes.",
+    title: "MyVibeMyTrip.com",
+    description: "Travel with people who match your vibe.",
     url: "/",
-    siteName: "Rivanta Realty",
+    siteName: "MyVibeMyTrip.com",
     type: "website"
   }
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-white text-navy antialiased`}>
+      <body className="min-h-screen bg-white font-sans text-navy antialiased">
         <Header />
         {children}
       </body>
